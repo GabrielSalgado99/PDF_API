@@ -4,7 +4,7 @@ const express = require(`express`)
 const jwt = require(`jsonwebtoken`)
 const bodyParser = require(`body-parser`)
 const SECRET = `mysecret`
-//Middleware
+//Multer middleware para upload de arquivos
 const multer = require(`multer`)
 //Modulo para pegar extensao do arquivo
 const path = require(`path`)
@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 app.post(`/login`, (req,res) => {
     if (req.body.user === `user` && req.body.password === `0000`) {
         const token = jwt.sign({usedID: 1}, SECRET, {expiresIn: 600})
-        return res.json({Auth: true, token})
+        return res.json({Authentication: true, token})
     }
     res.status(401).end()
 })
@@ -34,7 +34,7 @@ function verifyToken(req, res, next) {
     })
 }
 
-//configurando armazenamento
+//Configurando armazenamento
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, `uploads/`)
@@ -59,3 +59,33 @@ app.post(`/uploads`, upload.single(`file`) , (req, res) => {
 app.listen(8080, () => {
     console.log(`Servidor Online !!`)
 })
+
+/* 
+    Deixando aqui nesse comentário como seria a função de upload para bucket S3
+    
+    require(`dotenv`).config
+    const fs = require(`fs`)
+    const s3 = require(`aws-sdk`)
+
+    const bucketName = process.env.AWS_BUCKET_NAME
+    const bucketRegion = process.env.AWS_BUCKET_REGION
+    const accessKey = process.env.AWS_ACCESS_KEY
+    const secretKey = process.env.AWS_SECRET_KEY
+    const bucket = new s3({
+        bucketRegion,
+        accessKey,
+        secretKey
+    })
+
+    function uploadBucket(file){
+        const fileStream = fs.createdReadStream(file.path)
+
+        const params = {
+            Bucket: bucketName,
+            Body: fileStream,
+            Key: file.filename
+        }
+
+        return bucket.upload(params).promise()
+    }
+ */
