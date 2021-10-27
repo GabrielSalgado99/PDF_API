@@ -8,7 +8,7 @@ API para receber e armazenar PDFs
        
   - [BucketS3](https://aws.amazon.com/pt/s3/) para armazenamento
 
- #### 🚧API AINDA EM FASE DE PRODUÇÃO🚧
+ #### 🚧API FUNCIONAL, MAS PROPENSA A MELHORIAS🚧
 
 ## Clonando o repositório
 $ git clone https://github.com/GabrielSalgado99/PDF_API.git
@@ -21,6 +21,18 @@ PS: A seguir será apresentada uma forma temporária de instalar as dependência
 
 ```
 Criação de uma pasta dentro da pasta do projeto(PDF_API) como nome uploads para os armazenar os arquivos
+
+Criação de um arquivo .env que terá as informações do bucket onde será realizado o upload:
+S3_BUCKET_NAME="nome-do-seu-bucket"
+AWS_BUCKET_REGION="regiao-do-seu-bucket"
+AWS_ACCESS_KEY_ID="sua-access-key"
+AWS_SECRET_ACCESS_KEY="sua-secret-key"
+
+Instalar o SDK da AWS:
+$ npm install aws-sdk
+
+Instalar o dotenv para as variaveis de ambiente:
+$ npm install dotenv
 
 Instalar o express para execução da aplicação:
 $ npm install express
