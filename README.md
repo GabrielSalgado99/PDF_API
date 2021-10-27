@@ -20,6 +20,8 @@ Instalar algumas dependências que serão utilizadas pela API, acesse a pasta do
 PS: A seguir será apresentada uma forma temporária de instalar as dependências, para instalar de forma definitiva basta adicionar --save no final de cada comando
 
 ```
+Criação de uma pasta dentro da pasta do projeto(PDF_API) como nome uploads para os armazenar os arquivos
+
 Instalar o express para execução da aplicação:
 $ npm install express
 
