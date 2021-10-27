@@ -20,6 +20,8 @@ Instalar algumas dependências que serão utilizadas pela API, acesse a pasta do
 PS: A seguir será apresentada uma forma temporária de instalar as dependências, para instalar de forma definitiva basta adicionar --save no final de cada comando
 
 ```
+Criação de uma pasta dentro da pasta do projeto(PDF_API) como nome uploads para os armazenar os arquivos
+
 Instalar o express para execução da aplicação:
 $ npm install express
 
@@ -29,18 +31,23 @@ $ npm install multer
 Instalar o JWT para autenticação:
 $ npm install jsonwebtoken
 
-Instalar o body-parser para análise dos dados recebidos em requests:
-$ npm install body-parser
-
 Instalar o EJS:
 $ npm install ejs
+
+(Opcional) Instalar o nodemon para melhor controle da aplicação:
+$ npm install nodemon
+
 ```
 ## Execução
   ### Inicialização do servidor
   ```
-  Novamente abra a pasta do projeto com o terminal e insira o seguinte comando:
+  Caso você tenha instalado o nodemon, abra a pasta do projeto no terminal(PDF_API) e insira o seguinte comando:
   
-  $ node index.js
+  $ npm run start
+  
+  Caso não tenha o nodemon, abra a pasta src do projeto no terminal e insira o seguinte comando:
+  
+  $ node server.js
   ```
   Após isso, você receberá uma confirmação de que o servidor está online, para utilizá-lo basta acessar através do localhost:8080
   
@@ -48,7 +55,7 @@ $ npm install ejs
   Para utilizar a função de upload de arquivo, você primeiro precisará fazer um post request para o link abaixo passando o user e o password no body
   ```
   link 
-  localhost:8080/login
+  localhost:8080/auth/login
   
   Header
   Key: Content-type
@@ -66,7 +73,7 @@ $ npm install ejs
   Para acessar o upload de arquivos, basta fazer um get request com as seguintes informações:
   ```
   link 
-  localhost:8080/uploadfile
+  localhost:8080/storage/uploadfile
   
   Params
   Key: x-access-token
